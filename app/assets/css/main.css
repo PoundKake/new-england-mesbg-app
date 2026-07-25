@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@theme {
+  --color-mesbg-ink: #1b1712;
+  --color-mesbg-parchment: #f4ede0;
+  --color-mesbg-gold: #b08d38;
+  --color-mesbg-red: #7a1f1f;
+}

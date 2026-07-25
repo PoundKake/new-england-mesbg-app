@@ -1,0 +1,84 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      # Read by db/migrations/0002_roles.sh on first init only.
+      AUTHENTICATOR_PASSWORD: ${AUTHENTICATOR_PASSWORD}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Only runs against a fresh (empty) volume. Post-launch schema changes
+      # are applied manually — see README.
+      - ./db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  postgrest:
+    image: postgrest/postgrest:v14.15
+    environment:
+      PGRST_DB_URI: postgres://authenticator:${AUTHENTICATOR_PASSWORD}@db:5432/${POSTGRES_DB}
+      PGRST_DB_SCHEMAS: api
+      PGRST_DB_ANON_ROLE: web_anon
+      # Must match NUXT_JWT_SECRET below — one signs, the other verifies.
+      PGRST_JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  app:
+    build: .
+    environment:
+      # Server-only, internal Docker network — no TLS hop needed container-to-container.
+      NUXT_API_BASE_INTERNAL: http://postgrest:3000
+      # Client-side calls go through Caddy instead.
+      NUXT_PUBLIC_API_BASE: /api
+      NUXT_PUBLIC_GOOGLE_CALENDAR_ID: ${GOOGLE_CALENDAR_ID}
+      NUXT_JWT_SECRET: ${JWT_SECRET}
+    depends_on:
+      - postgrest
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+      - postgrest
+    restart: unless-stopped
+
+  pg-backup:
+    build: ./docker/pg-backup
+    environment:
+      PGHOST: db
+      PGUSER: ${POSTGRES_USER}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGDATABASE: ${POSTGRES_DB}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-86400}
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-14}
+    volumes:
+      - pgbackups:/backups
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  pgbackups:
+  caddy_data:
+  caddy_config:

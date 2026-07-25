@@ -1,0 +1,10 @@
+{$DOMAIN} {
+	# PostgREST first, so /api/* never falls through to the Nuxt catch-all.
+	handle_path /api/* {
+		reverse_proxy postgrest:3000
+	}
+
+	handle {
+		reverse_proxy app:3000
+	}
+}
