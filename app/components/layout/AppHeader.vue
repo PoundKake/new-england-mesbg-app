@@ -27,10 +27,11 @@ const navLinks = [
         </NuxtLink>
 
         <NuxtLink
-          :to="isAuthenticated ? '/admin' : '/admin/login'"
+          v-if="isAuthenticated"
+          to="/admin"
           class="text-mesbg-parchment/80 transition hover:text-mesbg-gold"
         >
-          {{ isAuthenticated ? `Admin (${adminName})` : 'Admin Login' }}
+          Admin ({{ adminName }})
         </NuxtLink>
 
         <button
