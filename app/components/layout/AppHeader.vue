@@ -4,7 +4,6 @@ const { isAuthenticated, adminName, logout } = useAuth()
 const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/events', label: 'Events' },
-  { to: '/stats', label: 'Stats' },
   { to: '/gallery', label: 'Photos' }
 ]
 </script>

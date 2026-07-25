@@ -1,4 +1,4 @@
-import type { EventWithPlacements, ResultSubmission } from '~/types/models'
+import type { ResultSubmission } from '~/types/models'
 
 export interface NewEventInput {
   season_id: string
@@ -10,22 +10,8 @@ export interface NewEventInput {
   results: ResultSubmission[]
 }
 
-const EVENT_WITH_PLACEMENTS_SELECT =
-  'id,season_id,name,series_name,event_date,tta_url,created_at,' +
-  'game_results(placement,faction,player:players(id,display_name,home_state))'
-
 export function useEvents() {
   const { apiFetch } = useApi()
-
-  function listEventsForSeason(seasonId: string): Promise<EventWithPlacements[]> {
-    return apiFetch<EventWithPlacements[]>('/events', {
-      query: {
-        season_id: `eq.${seasonId}`,
-        select: EVENT_WITH_PLACEMENTS_SELECT,
-        order: 'event_date.asc'
-      }
-    })
-  }
 
   /**
    * Creates one event plus its 3 placements as a single transaction via
@@ -46,5 +32,5 @@ export function useEvents() {
     })
   }
 
-  return { listEventsForSeason, createEventWithResults }
+  return { createEventWithResults }
 }

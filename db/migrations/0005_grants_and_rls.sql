@@ -16,8 +16,6 @@ grant select on
   api.events,
   api.game_results,
   api.photos,
-  api.season_player_standings,
-  api.season_state_standings,
   api.photo_feed
 to web_anon, web_admin;
 

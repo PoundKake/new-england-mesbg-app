@@ -5,8 +5,7 @@ export interface StateOption {
 
 /**
  * New England plus nearby states players commonly travel from/to. Used for
- * player `home_state` selection and the "State Challenge"-style season
- * standings. Codes are USPS two-letter abbreviations.
+ * player `home_state` selection. Codes are USPS two-letter abbreviations.
  */
 export const NEW_ENGLAND_STATES: StateOption[] = [
   { code: 'ME', name: 'Maine' },

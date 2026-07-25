@@ -10,9 +10,9 @@ create extension if not exists pgcrypto;
 
 set search_path = api, public;
 
--- Points awarded per event placement. Kept as data (not a hardcoded CASE
--- expression in the standings views) so the scoring weights can be changed
--- with an UPDATE instead of a migration.
+-- Points awarded per event placement. Referenced by game_results.placement's
+-- foreign key; kept as data so the scoring weights can be changed with an
+-- UPDATE instead of a migration.
 create table api.placement_points (
   placement smallint primary key check (placement in (1, 2, 3)),
   points    smallint not null

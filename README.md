@@ -3,8 +3,7 @@
 A community site for the New England Middle-earth Strategy Battle Game (MESBG)
 scene: a home page for finding local groups, an Events page (Google Calendar
 embed + a link out to [Table Top Admiral](http://modular.tabletopadmiral.com/)
-for brackets/army lists), a Stats page (season results and standings), and a
-photo Gallery.
+for brackets/army lists), and a photo Gallery.
 
 See `.claude/plans` history or ask the maintainer for the original design
 discussion — the short version: results/photos live in a self-hosted

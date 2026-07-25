@@ -11,10 +11,10 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()]
   },
 
-  // Component filenames are already unambiguous (AppHeader, StandingsCard,
-  // PhotoGrid, ...) — disable Nuxt's default directory-based prefixing
-  // (e.g. components/stats/StandingsCard.vue -> <StatsStandingsCard>) so
-  // templates can use the plain component name.
+  // Component filenames are already unambiguous (AppHeader, PhotoGrid, ...) —
+  // disable Nuxt's default directory-based prefixing (e.g.
+  // components/gallery/PhotoGrid.vue -> <GalleryPhotoGrid>) so templates can
+  // use the plain component name.
   components: [{ path: '~/components', pathPrefix: false }],
 
   runtimeConfig: {

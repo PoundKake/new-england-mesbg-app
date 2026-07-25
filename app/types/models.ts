@@ -38,39 +38,6 @@ export interface GameResult {
   created_at: string
 }
 
-/** One placement row as embedded under an event by PostgREST resource embedding. */
-export interface EmbeddedPlacement {
-  placement: Placement
-  faction: string
-  player: Pick<Player, 'id' | 'display_name' | 'home_state'>
-}
-
-/** An event with its 1st/2nd/3rd place results embedded, as rendered on the Stats page. */
-export interface EventWithPlacements extends EventRecord {
-  game_results: EmbeddedPlacement[]
-}
-
-export interface SeasonPlayerStanding {
-  season_id: string
-  player_id: string
-  display_name: string
-  home_state: string
-  events_played: number
-  total_points: number
-  firsts: number
-  seconds: number
-  thirds: number
-  standing_rank: number
-}
-
-export interface SeasonStateStanding {
-  season_id: string
-  home_state: string
-  total_points: number
-  podium_finishes: number
-  standing_rank: number
-}
-
 export interface AuthenticatedAdmin {
   id: string
   display_name: string

@@ -15,12 +15,6 @@
       >
         See Upcoming Events
       </NuxtLink>
-      <NuxtLink
-        to="/stats"
-        class="rounded border border-mesbg-ink/20 px-6 py-3 text-sm font-semibold tracking-wide text-mesbg-ink uppercase transition hover:border-mesbg-gold hover:text-mesbg-gold"
-      >
-        View Season Standings
-      </NuxtLink>
     </div>
   </section>
 </template>
