@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm view *)",
+      "Bash(npm audit *)",
+      "Bash(chmod +x \"c:\\\\Users\\\\Christian\\\\Documents\\\\Software\\\\new-england-mesbg-app\\\\db\\\\migrations\\\\0002_roles.sh\")",
+      "Bash(chmod +x db/migrations/0002_roles.sh)",
+      "Bash(chmod +x db/migrations/0002_roles.sh docker/pg-backup/backup.sh)",
+      "Bash(curl -s https://hub.docker.com/v2/repositories/postgrest/postgrest/tags/?page_size=20)",
+      "Bash(node -e \"console.log\\(Object.keys\\(require\\('./node_modules/@nuxt/test-utils/package.json'\\).exports || {}\\)\\)\")",
+      "Bash(npx nuxt *)",
+      "Bash(npx vitest *)",
+      "Bash(node -e ' *)",
+      "Bash(npm install *)",
+      "Bash(echo \"EXIT_CODE=$?\")",
+      "Bash(npm run *)",
+      "Read(//tmp/**)"
+    ]
+  }
+}
