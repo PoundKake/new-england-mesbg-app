@@ -27,6 +27,10 @@ services:
       PGRST_DB_ANON_ROLE: web_anon
       # Must match NUXT_JWT_SECRET below — one signs, the other verifies.
       PGRST_JWT_SECRET: ${JWT_SECRET}
+    ports:
+      # Published so `npm run dev` (nuxt.config.ts's apiBaseInternal default,
+      # http://localhost:3001) can reach PostgREST directly, bypassing Caddy.
+      - "3001:3000"
     depends_on:
       db:
         condition: service_healthy
