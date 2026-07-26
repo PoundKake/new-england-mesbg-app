@@ -51,9 +51,11 @@ pages render with empty states rather than crashing (each fetch is wrapped in
      must be identical to what PostgREST uses (docker-compose.yml wires the
      same value to both).
    - `DOMAIN` — the public domain Caddy will request a TLS certificate for.
-   - `GOOGLE_CALENDAR_ID` — from the calendar's Settings → Integrate
-     calendar → Calendar ID. **The calendar must be shared as public** ("See
-     all event details") or the Events page embed will show nothing.
+   - `GOOGLE_CALENDAR_IDS` — from each calendar's Settings → Integrate
+     calendar → Calendar ID. Comma-separate multiple IDs to overlay several
+     calendars (e.g. different stores' schedules) in one embed. **Each
+     calendar must be shared as public** ("See all event details") or the
+     Events page embed will show nothing for it.
 2. `docker compose up -d` — brings up Postgres, PostgREST, the Nuxt app,
    Caddy, and the backup job. On first boot, Postgres runs everything in
    `db/migrations/` once against the fresh volume.

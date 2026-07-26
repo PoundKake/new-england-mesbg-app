@@ -39,7 +39,7 @@ services:
       NUXT_API_BASE_INTERNAL: http://postgrest:3000
       # Client-side calls go through Caddy instead.
       NUXT_PUBLIC_API_BASE: /api
-      NUXT_PUBLIC_GOOGLE_CALENDAR_ID: ${GOOGLE_CALENDAR_ID}
+      GOOGLE_CALENDAR_IDS: ${GOOGLE_CALENDAR_IDS}
       NUXT_JWT_SECRET: ${JWT_SECRET}
     depends_on:
       - postgrest

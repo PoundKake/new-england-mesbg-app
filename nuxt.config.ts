@@ -27,7 +27,11 @@ export default defineNuxtConfig({
     public: {
       // Client-side base URL, reached through the Caddy reverse proxy.
       apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api',
-      googleCalendarId: process.env.NUXT_PUBLIC_GOOGLE_CALENDAR_ID || '',
+      // Comma-separated list of one or more calendar IDs — see
+      // GoogleCalendarEmbed.vue. Read as plain GOOGLE_CALENDAR_IDS (no
+      // NUXT_PUBLIC_ prefix) so the same .env value works both for local
+      // `npm run dev` and through docker-compose.yml unchanged.
+      googleCalendarIds: process.env.GOOGLE_CALENDAR_IDS || '',
       tableTopAdmiralUrl: 'http://modular.tabletopadmiral.com/'
     }
   }
