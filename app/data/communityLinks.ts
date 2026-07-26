@@ -12,12 +12,12 @@ export interface CommunityLink {
 export const COMMUNITY_LINKS: CommunityLink[] = [
   {
     label: 'Discord',
-    url: '#todo-add-discord-invite-link',
-    description: 'TODO: add your Discord invite link in app/data/communityLinks.ts'
+    url: 'https://discord.gg/KWrUnT8dVu',
+    description: 'Join our Discord community!'
   },
   {
     label: 'Facebook Group',
-    url: '#todo-add-facebook-group-link',
-    description: 'TODO: add your Facebook group link in app/data/communityLinks.ts'
+    url: 'https://www.facebook.com/share/g/18DnRN3zab/?mibextid=wwXIfr',
+    description: 'Join the Facebook group!'
   }
 ]
