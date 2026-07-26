@@ -1,5 +1,9 @@
 <template>
-  <section class="text-center">
+     <img
+      src="/NEMESBG_2_Tree.png"
+      alt="New England Middle-earth Strategy Battle Gamers seal"
+      class="mx-auto mt-8 w-48 sm:w-56"
+    > <section class="text-center">
     <h1 class="text-4xl font-bold tracking-tight text-mesbg-ink sm:text-5xl">
       New England MESBG
     </h1>
